@@ -45,7 +45,14 @@ Feature: Add epmployee
       | adam      | ms         | jacob    |
       | steve     | ms         | jacob    |
 
+  @addemployeebyexcel
+  Scenario: Adding employees using excel file
+    When user adds multiple employees from excel file
 
-
-
+  @addemployeebyworkbooksheet
+  Scenario Outline: Adding employees using workbooks and sheets
+    When user adds multiple employees from workbook "<workbook>" and sheet "<sheet>"
+    Examples:
+      | workbook          | sheet  |
+      | testsetUsers.xlsx | List 1 |
 
