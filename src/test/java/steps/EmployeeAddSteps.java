@@ -97,6 +97,7 @@ public class EmployeeAddSteps extends CommonMethods {
 
     @When("user adds multiple employees from workbook {string} and sheet {string}")
     public void user_adds_multiple_employees_from_workbook_and_sheet(String xlsxFile, String sheet) throws IOException {
+        System.out.println("Workbook " + xlsxFile + ", sheet " + sheet);
         ExcelReader data = new ExcelReader(xlsxFile);
         List<Map<String, String>> newEmployees = data.getAllSheetCells(sheet);
         for (Map<String, String> employee : newEmployees) {
