@@ -1,7 +1,7 @@
 Feature: Search employee
 
   Background:
-    #Given user is able to access HRMS application
+    #Given user is able to access HRMS application  // hooks opens the app
     When user enters admin username and password
     And user clicks on login button
     Then user is able to see dashboard page
