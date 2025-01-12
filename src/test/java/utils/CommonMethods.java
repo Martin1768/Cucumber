@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class CommonMethods {
+public class CommonMethods extends PageInitializer{
     public static WebDriver driver;
 
     public static void openBrowser() {
@@ -36,9 +36,11 @@ public class CommonMethods {
                 throw new RuntimeException("Invalid browser name: " + browser);
         }
 
-//        driver.manage().window().maximize();
-//        driver.get(ConfigReader.read("url"));
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().window().maximize();
+        driver.get(ConfigReader.read("hrms.url"));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
+        initPageObjects();
     }
 
     public static void closeBrowser() {
@@ -66,7 +68,7 @@ public class CommonMethods {
         element.click();
     }
 
-    public static void sentText(String text, WebElement element) {
+    public static void sendText(String text, WebElement element) {
         waitForElementToBeVisible(element);
         element.clear();
         element.sendKeys(text);

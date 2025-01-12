@@ -20,40 +20,29 @@ public class EmployeeAddSteps extends CommonMethods {
 
     @When("user enters firstname and lastname")
     public void user_enters_firstname_and_lastname() {
-        WebElement firstNameField = driver.findElement(By.id("firstName"));
-        WebElement lastNameField = driver.findElement(By.id("lastName"));
-        firstNameField.sendKeys("mark");
-        lastNameField.sendKeys("jacob");
+        sendText("mark", addEmployeePage.firstNameField);
+        sendText("jacob", addEmployeePage.lastNameField);
     }
 
     @When("user enters firstname and middlename and lastname")
     public void user_enters_firstname_and_middlename_and_lastname() {
-        WebElement firstNameField = driver.findElement(By.id("firstName"));
-        WebElement midNameField = driver.findElement(By.id("middleName"));
-        WebElement lastNameField = driver.findElement(By.id("lastName"));
-        firstNameField.sendKeys("mark");
-        midNameField.sendKeys("ms");
-        lastNameField.sendKeys("jacob");
+        sendText("mark", addEmployeePage.firstNameField);
+        sendText("mark", addEmployeePage.midNameField);
+        sendText("jacob", addEmployeePage.lastNameField);
     }
 
     @When("user enters {string} and {string} and {string} in the application")
     public void user_enters_and_and_in_the_application(String fn, String mn, String ln) {
-        WebElement firstNameField = driver.findElement(By.id("firstName"));
-        WebElement midNameField = driver.findElement(By.id("middleName"));
-        WebElement lastNameField = driver.findElement(By.id("lastName"));
-        firstNameField.sendKeys(fn);
-        midNameField.sendKeys(mn);
-        lastNameField.sendKeys(ln);
+        sendText(fn, addEmployeePage.firstNameField);
+        sendText(mn, addEmployeePage.midNameField);
+        sendText(ln, addEmployeePage.lastNameField);
     }
 
     @When("user adds {string} , {string} and {string}")
     public void user_adds_and(String fn, String mn, String ln) {
-        WebElement firstNameField = driver.findElement(By.id("firstName"));
-        WebElement midNameField = driver.findElement(By.id("middleName"));
-        WebElement lastNameField = driver.findElement(By.id("lastName"));
-        firstNameField.sendKeys(fn);
-        midNameField.sendKeys(mn);
-        lastNameField.sendKeys(ln);
+        sendText(fn, addEmployeePage.firstNameField);
+        sendText(mn, addEmployeePage.midNameField);
+        sendText(ln, addEmployeePage.lastNameField);
     }
 
     @When("user adds multiple employees using table and save them")
@@ -61,18 +50,11 @@ public class EmployeeAddSteps extends CommonMethods {
             io.cucumber.datatable.DataTable dataTable) {
         List<Map<String, String>> employeeNames = dataTable.asMaps();
         for (Map<String, String> employee:employeeNames) {
-            WebElement firstNameField = driver.findElement(By.id("firstName"));
-            WebElement midNameField = driver.findElement(By.id("middleName"));
-            WebElement lastNameField = driver.findElement(By.id("lastName"));
-            firstNameField.sendKeys(employee.get("firstName"));
-            midNameField.sendKeys(employee.get("middleName"));
-            lastNameField.sendKeys(employee.get("lastName"));
-
-            WebElement saveBtn = driver.findElement(By.id("btnSave"));
-            saveBtn.click();
-
-            WebElement addEmpOption = driver.findElement(By.id("menu_pim_addEmployee"));
-            addEmpOption.click();
+            sendText(employee.get("firstName"), addEmployeePage.firstNameField);
+            sendText(employee.get("middleName"), addEmployeePage.midNameField);
+            sendText(employee.get("lastName"), addEmployeePage.lastNameField);
+            clickOnElement(addEmployeePage.saveBtn);
+            clickOnElement(addEmployeePage.addEmpOption);
         }
     }
     @When("user adds multiple employees from excel file")
@@ -80,18 +62,11 @@ public class EmployeeAddSteps extends CommonMethods {
         ExcelReader data = new ExcelReader();
         List<Map<String, String>> newEmployees = data.getAllSheetCells("List 1");
         for (Map<String, String> employee : newEmployees) {
-            WebElement firstNameField = driver.findElement(By.id("firstName"));
-            WebElement midNameField = driver.findElement(By.id("middleName"));
-            WebElement lastNameField = driver.findElement(By.id("lastName"));
-            firstNameField.sendKeys(employee.get("firstName"));
-            midNameField.sendKeys(employee.get("middleName"));
-            lastNameField.sendKeys(employee.get("lastName"));
-
-            WebElement saveBtn = driver.findElement(By.id("btnSave"));
-            saveBtn.click();
-
-            WebElement addEmpOption = driver.findElement(By.id("menu_pim_addEmployee"));
-            addEmpOption.click();
+            sendText(employee.get("firstName"), addEmployeePage.firstNameField);
+            sendText(employee.get("middleName"), addEmployeePage.midNameField);
+            sendText(employee.get("lastName"), addEmployeePage.lastNameField);
+            clickOnElement(addEmployeePage.saveBtn);
+            clickOnElement(addEmployeePage.addEmpOption);
         }
     }
 
@@ -101,26 +76,17 @@ public class EmployeeAddSteps extends CommonMethods {
         ExcelReader data = new ExcelReader(xlsxFile);
         List<Map<String, String>> newEmployees = data.getAllSheetCells(sheet);
         for (Map<String, String> employee : newEmployees) {
-            WebElement firstNameField = driver.findElement(By.id("firstName"));
-            WebElement midNameField = driver.findElement(By.id("middleName"));
-            WebElement lastNameField = driver.findElement(By.id("lastName"));
-            firstNameField.sendKeys(employee.get("firstName"));
-            midNameField.sendKeys(employee.get("middleName"));
-            lastNameField.sendKeys(employee.get("lastName"));
-
-            WebElement saveBtn = driver.findElement(By.id("btnSave"));
-            saveBtn.click();
-
-            WebElement addEmpOption = driver.findElement(By.id("menu_pim_addEmployee"));
-            addEmpOption.click();
+            sendText(employee.get("firstName"), addEmployeePage.firstNameField);
+            sendText(employee.get("middleName"), addEmployeePage.midNameField);
+            sendText(employee.get("lastName"), addEmployeePage.lastNameField);
+            clickOnElement(addEmployeePage.saveBtn);
+            clickOnElement(addEmployeePage.addEmpOption);
         }
     }
 
-
     @When("user clicks on save button")
     public void user_clicks_on_save_button() {
-        WebElement saveBtn = driver.findElement(By.id("btnSave"));
-        saveBtn.click();
+        clickOnElement(addEmployeePage.saveBtn);
     }
 
     @Then("employee added successfully")

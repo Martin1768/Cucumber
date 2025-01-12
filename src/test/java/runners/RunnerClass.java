@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         glue = "steps",
         dryRun = false,  // true is for validating all scenarios and return result if they are ok or not
         // plugin = {"pretty"},   // detailed report of every step
-        tags = "@addemployeebyworkbooksheet"
+        tags = "@addemployeebydata"
 )
 
 
