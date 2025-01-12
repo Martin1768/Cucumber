@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features/",
+        features = "@target/failed.txt",
         glue = "steps",
         dryRun = false,  // true is for validating all scenarios and return result if they are ok or not
         plugin = {"pretty",  // detailed report of every step
@@ -16,5 +16,5 @@ import org.junit.runner.RunWith;
 )
 
 
-public class RunnerClass {
+public class FailedRunner {
 }

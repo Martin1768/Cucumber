@@ -3,6 +3,7 @@ package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.CommonMethods;
@@ -28,6 +29,15 @@ public class LoginSteps extends CommonMethods {
 
     @Then("user is able to see dashboard page")
     public void user_is_able_to_see_dashboard_page() {
+        Assert.assertTrue(dashboardPage.messageText.isDisplayed());
         System.out.println("test passed");
     }
+
+    @Then("user is able to see error message")
+    public void user_is_able_to_see_error_message() {
+        String err = loginPage.errorMessage.getText();
+        Assert.assertEquals("Invalid credentials", err);
+        System.out.println("Error message shown");
+    }
+
 }

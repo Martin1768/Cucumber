@@ -15,9 +15,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class CommonMethods extends PageInitializer {
     public static WebDriver driver;
@@ -116,5 +118,14 @@ public class CommonMethods extends PageInitializer {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
         return now.format(formatter);
     }
+    public static String getTimeStamp(String pattern){
 
+        Date date = new Date();
+        //yyyy-MM-dd-hh-mm-ss
+        //dd-MM-yyyy-mm-hh-ss
+        //to get the date in my acceptable format, i need to format it
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+
+        return sdf.format(date);
+    }
 }

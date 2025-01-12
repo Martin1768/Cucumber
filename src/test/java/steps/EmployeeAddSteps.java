@@ -2,8 +2,6 @@ package steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import utils.CommonMethods;
 import utils.ExcelReader;
 
@@ -14,8 +12,7 @@ import java.util.Map;
 public class EmployeeAddSteps extends CommonMethods {
     @When("user clicks on Add employee option")
     public void user_clicks_on_add_employee_option() {
-        WebElement addEmpOption = driver.findElement(By.id("menu_pim_addEmployee"));
-        addEmpOption.click();
+        clickOnElement(dashboardPage.addEmpOption);
     }
 
     @When("user enters firstname and lastname")
@@ -54,7 +51,7 @@ public class EmployeeAddSteps extends CommonMethods {
             sendText(employee.get("middleName"), addEmployeePage.midNameField);
             sendText(employee.get("lastName"), addEmployeePage.lastNameField);
             clickOnElement(addEmployeePage.saveBtn);
-            clickOnElement(addEmployeePage.addEmpOption);
+            clickOnElement(dashboardPage.addEmpOption);
         }
     }
     @When("user adds multiple employees from excel file")
@@ -66,7 +63,7 @@ public class EmployeeAddSteps extends CommonMethods {
             sendText(employee.get("middleName"), addEmployeePage.midNameField);
             sendText(employee.get("lastName"), addEmployeePage.lastNameField);
             clickOnElement(addEmployeePage.saveBtn);
-            clickOnElement(addEmployeePage.addEmpOption);
+            clickOnElement(dashboardPage.addEmpOption);
         }
     }
 
@@ -80,7 +77,7 @@ public class EmployeeAddSteps extends CommonMethods {
             sendText(employee.get("middleName"), addEmployeePage.midNameField);
             sendText(employee.get("lastName"), addEmployeePage.lastNameField);
             clickOnElement(addEmployeePage.saveBtn);
-            clickOnElement(addEmployeePage.addEmpOption);
+            clickOnElement(dashboardPage.addEmpOption);
         }
     }
 
