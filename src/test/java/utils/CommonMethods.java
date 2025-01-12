@@ -1,5 +1,8 @@
 package utils;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,9 +13,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class CommonMethods extends PageInitializer{
+public class CommonMethods extends PageInitializer {
     public static WebDriver driver;
 
     public static void openBrowser() {
@@ -88,7 +95,26 @@ public class CommonMethods extends PageInitializer{
         Select sel = new Select(element);
         sel.selectByVisibleText(text);
     }
-    //takescreenshot
-    //timestamp
+
+    public static byte[] takeScreenshot(String fileName) {
+        TakesScreenshot screenshot = (TakesScreenshot) driver;
+        byte[] screenshotData = screenshot.getScreenshotAs(OutputType.BYTES);
+
+        File screenshotFile = screenshot.getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(screenshotFile,
+                    new File(Constants.SCREENSHOTS_PATH + fileName +
+                            getTimeStamp() + ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return screenshotData;
+    }
+
+    public static String getTimeStamp() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        return now.format(formatter);
+    }
 
 }
