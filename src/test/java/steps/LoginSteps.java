@@ -22,6 +22,12 @@ public class LoginSteps extends CommonMethods {
         sendText(ConfigReader.read("hrms.password"), loginPage.passwordField);
     }
 
+    @When("user enters invalid username and password")
+    public void user_enters_invalid_username_and_password() {
+        sendText(ConfigReader.read("hrms.admin"), loginPage.usernameField);
+        sendText(ConfigReader.read("hrms.password").toLowerCase(), loginPage.passwordField);
+    }
+
     @When("user clicks on login button")
     public void user_clicks_on_login_button() {
         clickOnElement(loginPage.loginButton);

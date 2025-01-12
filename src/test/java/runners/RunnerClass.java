@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty",  // detailed report of every step
                 "html:target/cucumber.html",  // reports
         "rerun:target/failed.txt"},   // generates tyt file contains the path of failed test cases
-        tags = "@loggin"
+        tags = "@logginin"
 )
 
 
